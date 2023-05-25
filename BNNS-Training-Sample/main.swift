@@ -1,8 +1,8 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
-Main Swift file for BNNS training sample.
+The main Swift file for the BNNS training sample.
 */
 
 TrainingSample.testExample()

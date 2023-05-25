@@ -1,38 +1,39 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
-Resource deallocation extension.
+The resource deallocation extension.
 */
 
 import Accelerate
 
 extension TrainingSample {
-    // Deallocate memory allocated to the array descriptors.
+    // The `freeArrayDescriptors` function deallocates the allocated memory for
+    // the array descriptors.
     static func freeArrayDescriptors() {
         oneHotLabels.deallocate()
-        inputArray.deallocate()
-        convolutionWeightsArray.deallocate()
-        convolutionBiasArray.deallocate()
-        batchNormOutputArray.deallocate()
-        batchNormBetaArray.deallocate()
-        batchNormGammaArray.deallocate()
-        batchNormMovingVarianceArray.deallocate()
-        batchNormMovingMeanArray.deallocate()
-        poolingOutputArray.deallocate()
-        fullyConnectedWeightsArray.deallocate()
-        fullyConnectedOutputArray.deallocate()
-        lossOutputArray.deallocate()
-        lossInputGradientArray.deallocate()
-        fullyConnectedInputGradientArray.deallocate()
-        fullyConnectedWeightGradientArray.deallocate()
+        input.deallocate()
+        convolutionWeights.deallocate()
+        convolutionBias.deallocate()
+        batchNormOutput.deallocate()
+        batchNormBeta.deallocate()
+        batchNormGamma.deallocate()
+        batchNormMovingVariance.deallocate()
+        batchNormMovingMean.deallocate()
+        poolingOutput.deallocate()
+        fullyConnectedWeights.deallocate()
+        fullyConnectedOutput.deallocate()
+        lossOutput.deallocate()
+        lossInputGradient.deallocate()
+        fullyConnectedInputGradient.deallocate()
+        fullyConnectedWeightGradient.deallocate()
         fullyConnectedWeightAccumulator1.deallocate()
         fullyConnectedWeightAccumulator2.deallocate()
-        convolutionInputGradientArray.deallocate()
-        convolutionWeightGradientArray.deallocate()
-        convolutionBiasGradientArray.deallocate()
-        batchNormBetaGradientArray.deallocate()
-        batchNormGammaGradientArray.deallocate()
+        convolutionInputGradient.deallocate()
+        convolutionWeightGradient.deallocate()
+        convolutionBiasGradient.deallocate()
+        batchNormBetaGradient.deallocate()
+        batchNormGammaGradient.deallocate()
         convolutionWeightAccumulator1.deallocate()
         convolutionWeightAccumulator2.deallocate()
         convolutionBiasAccumulator1.deallocate()

@@ -1,8 +1,8 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
-Input and label generation extension.
+The input and label generation extension.
 */
 
 import Accelerate
@@ -10,19 +10,21 @@ import Accelerate
 extension TrainingSample {
     static let printDigits = false
     
+    // The `generateInputAndLabels` function populates the input and one-hot
+    // label descriptors with random digits.
     static func generateInputAndLabels() {
         
-        // Clear input and one-hot labels arrays.
-        vDSP_vclr(inputArray.data!.assumingMemoryBound(to: Float.self), 1,
-                  vDSP_Length(inputArray.shape.batchStride * batchSize))
+        // Clear the input and one-hot labels arrays.
+        vDSP_vclr(input.data!.assumingMemoryBound(to: Float.self), 1,
+                  vDSP_Length(input.shape.batchStride * batchSize))
         vDSP_vclr(oneHotLabels.data!.assumingMemoryBound(to: Float.self), 1,
                   vDSP_Length(oneHotLabels.shape.batchStride * batchSize))
         
-        // Create typed buffer pointers to input and one-hot labels data.
+        // Create typed buffer pointers to the input and one-hot labels data.
         let inputBufferPointer = UnsafeMutableBufferPointer<Float>(
-            start: inputArray.data!.bindMemory(to: Float.self,
-                                               capacity: inputArray.shape.batchStride * batchSize),
-            count: inputArray.shape.batchStride * batchSize)
+            start: input.data!.bindMemory(to: Float.self,
+                                               capacity: input.shape.batchStride * batchSize),
+            count: input.shape.batchStride * batchSize)
         
         let labelsBufferPointer = UnsafeMutableBufferPointer<Float>(
             start: oneHotLabels.data!.bindMemory(to: Float.self,
@@ -31,6 +33,8 @@ extension TrainingSample {
         
         // For each batch, write a random digit to a random position in the
         // 20 x 20 grid.
+        let convolutionInputSize = convolutionInputImageWidth * convolutionInputImageHeight * convolutionInputImageChannels
+        
         for i in 0 ..< batchSize {
             let inputOffset = i * convolutionInputSize
             let randomColumnOffset = Int.random(in: 0 ..< convolutionInputImageWidth - 6)

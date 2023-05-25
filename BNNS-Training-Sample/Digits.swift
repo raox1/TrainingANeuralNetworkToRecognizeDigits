@@ -1,13 +1,16 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
-Representations of the digits 0...9 as 6 x 6 matrices.
+Representations of the digits 0 through 9 as 6 x 6 matrices.
 */
 
 import Foundation
 
 extension TrainingSample {
+    
+    // The `Digits` structure provides an array of single-precision arrays that
+    // represent the numbers zero to nine.
     struct Digits {
         static let numberOfDigits = 10
         static let numbers = [zero, one, two, three, four, five, six, seven, eight, nine]

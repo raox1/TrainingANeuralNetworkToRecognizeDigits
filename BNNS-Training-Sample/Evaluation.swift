@@ -1,8 +1,8 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
-Network evaluation extension.
+The network evaluation extension.
 */
 
 import Accelerate
@@ -16,24 +16,24 @@ extension TrainingSample {
         // Perform the forward pass.
         do {
             try fusedConvBatchNormLayer.apply(batchSize: batchSize,
-                                              input: inputArray,
-                                              output: batchNormOutputArray,
+                                              input: input,
+                                              output: batchNormOutput,
                                               for: .inference)
             
             try poolingLayer.apply(batchSize: batchSize,
-                                   input: batchNormOutputArray,
-                                   output: poolingOutputArray)
+                                   input: batchNormOutput,
+                                   output: poolingOutput)
             
             try fullyConnectedLayer.apply(batchSize: batchSize,
-                                          input: poolingOutputArray,
-                                          output: fullyConnectedOutputArray)
+                                          input: poolingOutput,
+                                          output: fullyConnectedOutput)
         } catch {
             fatalError("Test forward pass failed.")
         }
         
         // Calculate the accuracy of the model.
         guard
-            let fullyConnected = fullyConnectedOutputArray.makeArray(
+            let fullyConnected = fullyConnectedOutput.makeArray(
                 of: Float.self,
                 batchSize: batchSize),
             let labels = oneHotLabels.makeArray(
